@@ -92,3 +92,33 @@ anova(species_lm, species_x_temp_lm)
 ```
 
 This comparison produces a p-value far above 0.05 and suggests that the species-temperature interaction and species-species models are not statistically significant in their difference. Therefore, we can rely on the simpler species linear model. We also checked for interactions but decided to stay with the species model, as adding more variables and interactions can often improve performance of R-squared but it becomes less meaningful to make predictions and practical decisions.
+
+## Visualize and Model Diamond Prices
+
+## Introduction
+This R markdown document demonstrates my ability to use models for data analysis using a diamond dataset. 
+
+#Diamond data chunk
+```{r load data1, include = FALSE}
+data(diamonds, package = "ggplot2")
+names(diamonds)
+```
+# Analyzing diamond prices
+
+```{r summary1, echo = FALSE}
+summary(diamonds)
+
+ggplot(diamonds, aes(x = carat, y = price)) +
+  geom_point(alpha = 0.7) +
+  coord_cartesian(xlim = c(0,5), ylim = c(0,30000)) +
+  geom_smooth(method = 'lm', se = TRUE, color = "blue") +
+  ggtitle("Scatterplot of carat and prices of diamond") +
+  ylab('Price (per carat)') +
+  xlab('Carat')
+
+carat_price <- lm( price ~ carat, data = diamonds)
+
+summary(carat_price)
+```
+
+
