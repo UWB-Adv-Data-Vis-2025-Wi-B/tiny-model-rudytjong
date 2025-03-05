@@ -64,3 +64,31 @@ summary.lm(species_lm)
 
 When comparing two species to examine the relationship between temperature and chirping rates, we observe a decrease in standard deviation from 4.2 to 3.6 chirps per minute. This suggests that for every one degree increase in temperature, the chirping rate rises by 3.6 chirps per minute. More interestingly, O.exclamationis exhibits a higher chirping rate, averaging 10 chirps per minute, compared to its counterpart, O.niveus.
 
+# Interactions between temperature and species
+
+Species historgram
+
+```{r species histogram, echo = FALSE}
+ggplot(crickets, aes(x = rate, fill = species)) +
+  geom_histogram(position = 'identity', alpha = 0.7, bins = 8) +
+  ggtitle("Distribution of the chirp rate of crickets") +
+  xlab('Chirp rate (per min.)')
+```
+
+Interactions
+
+```{r interactions, echo = FALSE}
+ggplot(crickets, aes(x = temp, y = rate, color = species)) +
+  geom_point() +
+  geom_smooth(method = 'lm') +
+  ggtitle("Plot of temperature and chirp rate for two species of crickets") +
+  ylab('Chirp rate (per min.)') +
+  xlab('Temperature (Celcius)')
+
+species_x_temp_lm <- lm(rate ~ temp + species + temp:species, crickets)
+summary.lm(species_x_temp_lm)
+
+anova(species_lm, species_x_temp_lm)
+```
+
+This comparison produces a p-value far above 0.05 and suggests that the species-temperature interaction and species-species models are not statistically significant in their difference. Therefore, we can rely on the simpler species linear model. We also checked for interactions but decided to stay with the species model, as adding more variables and interactions can often improve performance of R-squared but it becomes less meaningful to make predictions and practical decisions.
