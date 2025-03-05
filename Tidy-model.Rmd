@@ -13,3 +13,16 @@ install.packages(c('tidyverse', 'modeldata'))
 
 ## Introduction
 This R Markdown document demonstrates my abilities to use models for data analysis using a data set collected on crickets.
+
+# Load Data Chunk
+
+```{r load data, include = FALSE}
+data(crickets, package = "modeldata")
+names(crickets)
+```
+
+
+
+
+
+
