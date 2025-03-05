@@ -10,3 +10,6 @@ knitr::opts_chunk$set(echo = TRUE)
 library('tidyverse') ; library('modeldata')
 ```
 install.packages(c('tidyverse', 'modeldata'))
+
+## Introduction
+This R Markdown document demonstrates my abilities to use models for data analysis using a data set collected on crickets.
